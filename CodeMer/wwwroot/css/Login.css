@@ -1,0 +1,80 @@
+﻿section{
+    position: absolute;
+    width: 494px;
+    height: 688px;
+    left: 159px;
+    top: 60px;
+    background: #22242C;
+    border-radius: 10px;
+}
+.image{
+    position: absolute;
+    width: 176px;
+    height: 176px;
+    left: 169px;
+    top: 236px;
+    background: url(images/LogoPolessUp.jpg);
+}
+h2{
+    position: absolute;
+    width: 155px;
+    height: 42px;
+    left: 40px;
+    top: 378px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 42px;
+    color: #FFFFFF;
+}
+.input-group{
+    box-sizing: border-box;
+    position: absolute;
+    width: 414px;
+    height: 110px;
+    left: 753px;
+    top: 574px;
+    background: #2B2E37;
+    border: 1px solid #565656;
+    border-radius: 5px;
+}
+.forget{
+    position: absolute;
+    width: 163px;
+    height: 19px;
+    left: 291px;
+    top: 598px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+.button-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 14px 165px;
+    gap: 10px;
+    position: absolute;
+    width: 414px;
+    height: 56px;
+    left: 40px;
+    top: 553px;
+    background: #1C6AB3;
+    border-radius: 7px;
+}
+.register{
+    position: absolute;
+    width: 285px;
+    height: 19px;
+    left: 105px;
+    top: 639px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+}
+

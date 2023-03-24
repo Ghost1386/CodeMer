@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CodeMer.BusinessLogic\CodeMer.BusinessLogic.csproj" />
+      <ProjectReference Include="..\CodeMer.Common\CodeMer.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NUnit" Version="3.13.3" />
+      <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+      <PackageReference Include="NUnitTestAdapter.WithFramework" Version="2.0.0" />
+      <PackageReference Include="TestRunner" Version="1.10.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images" />
+      <Folder Include="wwwroot\js\lib" />
+    </ItemGroup>
+
+</Project>
