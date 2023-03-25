@@ -1,7 +1,15 @@
 using CodeMer.BusinessLogic.Interfaces;
 using CodeMer.BusinessLogic.Services;
+using CodeMer.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

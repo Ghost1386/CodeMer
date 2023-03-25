@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CodeMer.Common.Enums;
 
 namespace CodeMer.Models.Models;
 
@@ -16,4 +17,8 @@ public class User
     public string Email { get; set; }
     
     public string Password { get; set; }
+    
+    public Role Role { get; set; }
+    
+    public List<ProblemFinish> ProblemFinishes { get; set; }
 }

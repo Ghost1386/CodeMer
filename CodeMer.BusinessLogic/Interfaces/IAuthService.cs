@@ -1,10 +1,11 @@
 ﻿using CodeMer.Common.DTO.AuthDto;
+using CodeMer.Models.Models;
 
 namespace CodeMer.BusinessLogic.Interfaces;
 
 public interface IAuthService
 {
-    string Login(AuthUserDto authUserDto);
+    bool Login(AuthUserDto authUserDto, out User user);
 
-    void Registration(RegistrationUserDto registrationUserDto);
+    bool Registration(RegistrationUserDto registrationUserDto);
 }
