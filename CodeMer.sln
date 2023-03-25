@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMer.BusinessLogic", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMer.Common", "CodeMer.Common\CodeMer.Common.csproj", "{1D89AC97-0951-43E8-BCFF-AEF282E10E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMer.Temp", "CodeMer.Temp\CodeMer.Temp.csproj", "{86CAFFC7-43B7-44E8-B9AC-21420297222F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMer.ProblemMainFiles", "CodeMer.ProblemMainFiles\CodeMer.ProblemMainFiles.csproj", "{86CAFFC7-43B7-44E8-B9AC-21420297222F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMer.Models", "CodeMer.Models\CodeMer.Models.csproj", "{337CD9F5-2C45-415A-B437-D42CF56F8A72}"
 EndProject

@@ -1,9 +1,5 @@
-﻿using System.Diagnostics;
-using System.Text;
-using CodeMer.BusinessLogic.Interfaces;
-using CodeMer.Common.DTO.CompilerDto;
+﻿using CodeMer.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using CodeMer.Models;
 
 namespace CodeMer.Controllers;
 
@@ -18,14 +14,6 @@ public class HomeController : Controller
         _compilerService = compilerService;
     }
     
-    [HttpPost]
-    public IActionResult Compiler(RequestCompilerDto requestCompilerDto)
-    {
-        var response = _compilerService.Compiler(requestCompilerDto);
-
-        return Ok(response.Message);
-    }
-
     public IActionResult Index()
     {
         return View();

@@ -16,7 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CodeMer.Common\CodeMer.Common.csproj" />
-      <ProjectReference Include="..\CodeMer.Temp\CodeMer.Temp.csproj" />
+      <ProjectReference Include="..\CodeMer.ProblemMainFiles\CodeMer.ProblemMainFiles.csproj" />
     </ItemGroup>
 
 </Project>

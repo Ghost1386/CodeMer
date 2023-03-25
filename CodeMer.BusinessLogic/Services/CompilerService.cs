@@ -14,7 +14,7 @@ public class CompilerService : ICompilerService
         
         try
         {
-            var filePath = "C:/Users/egor5/OneDrive/Рабочий стол/CodeMer/CodeMer.Temp/Task1.cs";
+            var filePath = "C:/Users/egor5/OneDrive/Рабочий стол/CodeMer/CodeMer.ProblemMainFiles/Task1.cs";
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
