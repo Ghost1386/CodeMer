@@ -1,5 +1,4 @@
-using CodeMer.BusinessLogic.Interfaces;
-using CodeMer.BusinessLogic.Services;
+using CodeMer.Dependencies;
 using CodeMer.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<ICompilerService, CompilerService>();
+
+builder.Services.AddIService();;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
