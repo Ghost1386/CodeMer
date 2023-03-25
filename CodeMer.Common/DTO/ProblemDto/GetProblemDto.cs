@@ -2,7 +2,7 @@
 
 namespace CodeMer.Common.DTO.ProblemDto;
 
-public class CreateProblemDto
+public class GetProblemDto
 {
     public string Title { get; set; }
     
@@ -15,10 +15,4 @@ public class CreateProblemDto
     public int TimesComplete { get; set; }
 
     public List<Tags> Tags { get; set; }
-    
-    public string Text { get; set; }
-    
-    public string Example1 { get; set; }
-    
-    public string Example2 { get; set; }
 }

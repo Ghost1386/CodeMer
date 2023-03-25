@@ -6,11 +6,11 @@ public interface IProblemService
 {
     void Create(CreateProblemDto createProblemDto);
 
-    void GetAll();
+    List<GetAllProblemDto> GetAll();
 
-    void Get();
+    GetProblemDto Get(int id);
 
     void Update();
-    
+        
     void Delete();
 }

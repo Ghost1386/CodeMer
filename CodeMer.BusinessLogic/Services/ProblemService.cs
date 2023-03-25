@@ -1,7 +1,9 @@
 ﻿using CodeMer.BusinessLogic.Interfaces;
 using CodeMer.Common.DTO.ProblemDto;
+using CodeMer.Common.Enums;
 using CodeMer.Models;
 using CodeMer.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeMer.BusinessLogic.Services;
 
@@ -24,8 +26,6 @@ public class ProblemService : IProblemService
             TimeComplete = createProblemDto.TimeComplete,
             Rating = 0,
             TimesComplete = createProblemDto.TimesComplete,
-            ProgramLanguages = createProblemDto.ProgramLanguages.Select(programLanguages => 
-                (int)programLanguages).ToList(),
             Tags = createProblemDto.Tags.Select(tag => (int)tag).ToList()
         };
 
@@ -45,14 +45,45 @@ public class ProblemService : IProblemService
         _applicationContext.SaveChanges();
     }
 
-    public void GetAll()
+    public List<GetAllProblemDto> GetAll()
     {
-        throw new NotImplementedException();
+        var problems = _applicationContext.Problems.ToList();
+
+        var getAllProblemDto = problems.Select(problem => new GetAllProblemDto
+        {
+            Id = problem.Id,
+            Title = problem.Title,
+            Complexity = (ProblemComplexity)problem.Complexity,
+            PartOfCollection = problem.PartOfCollection,
+            TimeComplete = problem.TimeComplete,
+            TimesComplete = problem.TimesComplete,
+            Tags = problem.Tags.Select(tag => (Tags)tag).ToList()
+        }).ToList();
+
+        return getAllProblemDto;
     }
 
-    public void Get()
+    public GetProblemDto Get(int id)
     {
-        throw new NotImplementedException();
+        var problemWithDetails = _applicationContext.Problems.Include(problem => 
+            problem.ProblemDetail).FirstOrDefault(problem => problem.Id == id);
+
+        if (problemWithDetails != null)
+        {
+            var getProblemDto = new GetProblemDto
+            {
+                Title = problemWithDetails.Title,
+                Complexity = (ProblemComplexity)problemWithDetails.Complexity,
+                PartOfCollection = problemWithDetails.PartOfCollection,
+                TimeComplete = problemWithDetails.TimeComplete,
+                TimesComplete = problemWithDetails.TimesComplete,
+                Tags = problemWithDetails.Tags.Select(tag => (Tags)tag).ToList()
+            };
+
+            return getProblemDto;
+        }
+
+        return new GetProblemDto();
     }
 
     public void Update()

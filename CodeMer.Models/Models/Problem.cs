@@ -18,12 +18,10 @@ public class Problem
     public int Rating { get; set; }
     
     public int TimesComplete { get; set; }
-    
-    public List<int> ProgramLanguages { get; set; }
-    
+
     public List<int> Tags { get; set; }
     
-    public ProblemDetails Details { get; set; }
+    public ProblemDetails ProblemDetail { get; set; }
     
     public List<ProblemFinish> ProblemFinishes { get; set; }
 }
