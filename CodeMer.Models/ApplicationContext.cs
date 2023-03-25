@@ -10,5 +10,8 @@ public class ApplicationContext : DbContext
         Database.EnsureCreated();
     }
     
+    public DbSet<Problem> Problems { get; set; }
+    public DbSet<ProblemDetails> ProblemDetails { get; set; }
+    public DbSet<ProblemFinish> ProblemFinishes { get; set; }
     public DbSet<User> Users { get; set; }
 }

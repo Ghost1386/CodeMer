@@ -17,4 +17,6 @@ public class ProblemDetails
     public int ProblemId { get; set; }
     
     public Problem Problem { get; set; }
+    
+    public List<ProblemFinish> ProblemFinishes { get; set; }
 }

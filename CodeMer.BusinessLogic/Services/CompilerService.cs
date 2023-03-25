@@ -8,17 +8,17 @@ namespace CodeMer.BusinessLogic.Services;
 
 public class CompilerService : ICompilerService
 {
+    private const string FilePath = "C:/Users/egor5/OneDrive/Рабочий стол/CodeMer/CodeMer.ProblemMainFiles/Task1.cs";
+    
     public ResponseCompilerDto Compiler(RequestCompilerDto requestCompilerDto)
     {
         var responseCompilerDto = new ResponseCompilerDto();
         
         try
         {
-            var filePath = "C:/Users/egor5/OneDrive/Рабочий стол/CodeMer/CodeMer.ProblemMainFiles/Task1.cs";
-
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            using (var fileStream = new FileStream(FilePath, FileMode.Create))
             {
-                byte[] buffer = Encoding.Default.GetBytes(requestCompilerDto.Code);
+                var buffer = Encoding.Default.GetBytes(requestCompilerDto.Code);
 
                 fileStream.WriteAsync(buffer, 0, buffer.Length);
             }

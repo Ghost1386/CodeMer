@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using CodeMer.Common.Enums;
 
 namespace CodeMer.Models.Models;
 
@@ -10,7 +9,7 @@ public class Problem
     
     public string Title { get; set; }
     
-    public ProblemComplexity Complexity { get; set; }
+    public int Complexity { get; set; }
     
     public int PartOfCollection { get; set; }
     
@@ -20,9 +19,11 @@ public class Problem
     
     public int TimesComplete { get; set; }
     
-    public List<ProgramLanguages> ProgramLanguages { get; set; }
+    public List<int> ProgramLanguages { get; set; }
     
-    public List<Tags> Tags { get; set; }
+    public List<int> Tags { get; set; }
     
     public ProblemDetails Details { get; set; }
+    
+    public List<ProblemFinish> ProblemFinishes { get; set; }
 }
