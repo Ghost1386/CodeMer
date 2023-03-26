@@ -72,6 +72,7 @@ public class ProblemService : IProblemService
         {
             var getProblemDto = new GetProblemDto
             {
+                Id = problemWithDetails.Id,
                 Title = problemWithDetails.Title,
                 Complexity = (ProblemComplexity)problemWithDetails.Complexity,
                 PartOfCollection = problemWithDetails.PartOfCollection,
@@ -86,13 +87,56 @@ public class ProblemService : IProblemService
         return new GetProblemDto();
     }
 
-    public void Update()
+    public void Update(UpdateProblemDto updateProblemDto)
     {
-        throw new NotImplementedException();
+        var problem = _applicationContext.Problems.FirstOrDefault(problem => 
+            problem.Id == updateProblemDto.Id);
+
+        if (problem != null)
+        {
+            problem.Title = updateProblemDto.Title;
+            problem.Complexity = (int)updateProblemDto.Complexity;
+            problem.PartOfCollection = updateProblemDto.PartOfCollection;
+            problem.TimeComplete = updateProblemDto.TimeComplete;
+            problem.TimesComplete = updateProblemDto.TimesComplete;
+            problem.Tags = updateProblemDto.Tags.Select(tag => (int)tag).ToList();
+            
+            _applicationContext.Problems.Update(problem);
+            _applicationContext.SaveChanges();
+            
+            var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
+                problemDetails.Id == updateProblemDto.Id);
+        
+            if (problemDetails != null)
+            {
+                problemDetails.Text = updateProblemDto.Text;
+                problemDetails.Example1 = updateProblemDto.Example1;
+                problemDetails.Example2 = updateProblemDto.Example2;
+
+                _applicationContext.ProblemDetails.Update(problemDetails);
+                _applicationContext.SaveChanges();
+            }
+        }
     }
 
-    public void Delete()
+    public void Delete(int id)
     {
-        throw new NotImplementedException();
+        var problem = _applicationContext.Problems.FirstOrDefault(problem => 
+            problem.Id == id);
+
+        if (problem != null)
+        {
+            _applicationContext.Problems.Remove(problem);
+            _applicationContext.SaveChanges();
+            
+            var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
+                problemDetails.Id == id);
+            
+            if (problemDetails != null)
+            {
+                _applicationContext.ProblemDetails.Remove(problemDetails);
+                _applicationContext.SaveChanges();
+            }
+        }
     }
 }

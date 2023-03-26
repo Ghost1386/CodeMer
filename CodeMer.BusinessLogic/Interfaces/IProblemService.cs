@@ -10,7 +10,5 @@ public interface IProblemService
 
     GetProblemDto Get(int id);
 
-    void Update();
-        
-    void Delete();
+    void Delete(int id);
 }
