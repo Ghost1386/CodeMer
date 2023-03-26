@@ -12,6 +12,8 @@ public class GetAllProblemDto
     public int PartOfCollection { get; set; }
     
     public double TimeComplete { get; set; }
+    
+    public int Rating { get; set; }
 
     public int TimesComplete { get; set; }
 

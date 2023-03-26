@@ -11,4 +11,6 @@ public interface IProblemService
     GetProblemDto Get(int id);
 
     void Delete(int id);
+
+    void Evaluation(EvaluationProblemDto evaluationProblemDto);
 }

@@ -56,6 +56,7 @@ public class ProblemService : IProblemService
             Complexity = (ProblemComplexity)problem.Complexity,
             PartOfCollection = problem.PartOfCollection,
             TimeComplete = problem.TimeComplete,
+            Rating = problem.Rating,
             TimesComplete = problem.TimesComplete,
             Tags = problem.Tags.Select(tag => (Tags)tag).ToList()
         }).ToList();
@@ -135,6 +136,38 @@ public class ProblemService : IProblemService
             if (problemDetails != null)
             {
                 _applicationContext.ProblemDetails.Remove(problemDetails);
+                _applicationContext.SaveChanges();
+            }
+        }
+    }
+
+    public void Evaluation(EvaluationProblemDto evaluationProblemDto)
+    {
+        var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
+            problemDetails.Id == evaluationProblemDto.Id);
+        
+        if (problemDetails != null)
+        {
+            if (evaluationProblemDto.Evaluation == EvaluationType.Like)
+            {
+                problemDetails.Likes += 1;
+            }
+            else
+            {
+                problemDetails.DisLikes += 1;
+            }
+            
+            _applicationContext.ProblemDetails.Update(problemDetails);
+            _applicationContext.SaveChanges();
+            
+            var problem = _applicationContext.Problems.FirstOrDefault(problem => 
+                problem.Id == evaluationProblemDto.Id);
+            
+            if (problem != null)
+            {
+                problem.Rating = problemDetails.Likes / problemDetails.DisLikes;
+                
+                _applicationContext.Problems.Update(problem);
                 _applicationContext.SaveChanges();
             }
         }
