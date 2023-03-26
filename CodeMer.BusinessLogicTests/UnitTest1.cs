@@ -11,7 +11,7 @@ public class Tests
 
     [Test]
     [TestCase(0, 0, 0)]
-    public void Test1(int num1, int num2, int res)
+    public void TestForTask_1(int num1, int num2, int res)
     {
         var task1 = new Task1();
         

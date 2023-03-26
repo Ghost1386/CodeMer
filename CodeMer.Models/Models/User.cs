@@ -21,4 +21,6 @@ public class User
     public Role Role { get; set; }
     
     public List<ProblemFinish> ProblemFinishes { get; set; }
+    
+    public Decision Decision { get; set; }
 }
