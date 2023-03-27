@@ -10,8 +10,11 @@ public static class Dependencies
     {
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<ICompilerService, CompilerService>();
+        services.AddTransient<IDecisionService, DecisionService>();
         services.AddTransient<IEmailService, EmailService>();
         services.AddTransient<IGeneratorService, GeneratorService>();
+        services.AddTransient<IProblemFinishService, ProblemFinishService>();
+        services.AddTransient<IProblemService, ProblemService>();
         services.AddTransient<IUserService, UserService>();
     }
 }

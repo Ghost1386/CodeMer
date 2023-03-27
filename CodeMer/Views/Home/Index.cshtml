@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,17 +10,19 @@
 </head>
 <body>
 <div class="header"> CodeMer </div>
-    <div class="control-panel">
-        Select Language:
-        &nbsp; &nbsp;
-        <select id="languages" class="languages" onchange="changeLanguage()">
-            <option value="csharp"> C# </option>
-            <option value="cpp"> C++ </option>
-            <option value="php"> PHP </option>
-            <option value="python"> Python </option>
-            <option value="node"> Node JS </option>
-        </select>
-    </div>
+<div class="control-panel">
+    Select Language:
+    &nbsp; &nbsp;
+    <select id="languages" class="languages" onchange="changeLanguage()">
+        <option value="csharp"> C# </option>
+        <option value="cpp"> C++ </option>
+        <option value="php"> PHP </option>
+        <option value="python"> Python </option>
+        <option value="node"> Node JS </option>
+    </select>
+        
+</div>
+
     <div class="editor" id="editor"></div>
 
     <div class="button-container">
