@@ -10,6 +10,7 @@ public class ApplicationContext : DbContext
         Database.EnsureCreated();
     }
     
+    public DbSet<Admin> Admins { get; set; }
     public DbSet<Decision> Decisions { get; set; }
     public DbSet<Problem> Problems { get; set; }
     public DbSet<ProblemDetails> ProblemDetails { get; set; }

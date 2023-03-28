@@ -2,5 +2,5 @@
 
 public interface IGeneratorService
 {
-    string Generator(int length);
+    string Generator(int length, int type);
 }

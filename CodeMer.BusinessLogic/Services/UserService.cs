@@ -1,4 +1,6 @@
 ﻿using CodeMer.BusinessLogic.Interfaces;
+using CodeMer.Common.DTO.UserDto;
+using CodeMer.Common.Enums;
 using CodeMer.Models;
 using CodeMer.Models.Models;
 
@@ -32,5 +34,22 @@ public class UserService : IUserService
         var user = _applicationContext.Users.Any(user => user.Email == email);
 
         return user;
+    }
+
+    public void ChangeRole(ChangeUserRoleDto changeUserRoleDto)
+    {
+        var user = _applicationContext.Users.FirstOrDefault(user => user.Email == changeUserRoleDto.Email);
+
+        if (user != null)
+        {
+            user.Role = (int)changeUserRoleDto.NewRole;
+
+            _applicationContext.Users.Update(user);
+            
+            if (changeUserRoleDto.NewRole == Role.Admin)
+            {
+                
+            }
+        }
     }
 }

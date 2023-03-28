@@ -1,14 +1,8 @@
-﻿using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using CodeMer.BusinessLogic.Interfaces;
 using CodeMer.Common.DTO.AuthDto;
 using CodeMer.Common.Enums;
 using CodeMer.Models.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 namespace CodeMer.BusinessLogic.Services;
 
@@ -19,7 +13,7 @@ public class AuthService : IAuthService
     private readonly IGeneratorService _generatorService;
     private readonly IEmailService _emailService;
 
-    public AuthService(IConfiguration configuration, IMapper mapper, IUserService userService, 
+    public AuthService(IMapper mapper, IUserService userService, 
         IGeneratorService generatorService, IEmailService emailService)
     {
         _mapper = mapper;
@@ -52,7 +46,13 @@ public class AuthService : IAuthService
         {
             var user = _mapper.Map<RegistrationUserDto, User>(registrationUserDto);
 
-            user.Role = (int)Role.User;
+            user.Role = (int)Role.Pupil;
+
+            var password = _generatorService.Generator(8, 0);
+
+            _emailService.RegistrationBody(registrationUserDto, password);
+            
+            user.Password = password;
             
             _userService.Create(user);
 
@@ -61,6 +61,4 @@ public class AuthService : IAuthService
 
         return false;
     }
-    
-    
 }
