@@ -1,5 +1,4 @@
-﻿using CodeMer.BusinessLogic.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CodeMer.Controllers;
 

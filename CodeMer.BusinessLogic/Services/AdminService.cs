@@ -30,7 +30,7 @@ public class AdminService : IAdminService
         var admin = new Admin
         {
             Key = key,
-            UserId = user.Id,
+            UserId = user.UserId,
             User = user,
             Role = (int)Role.Admin
         };

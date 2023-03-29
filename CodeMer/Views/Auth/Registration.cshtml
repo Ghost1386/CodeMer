@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Registration.css">
+    <title>Registration</title>
+</head>
+<body>
+<div class="login">
+    <div class="login__card">
+        <div class="logo logo--big">
+            <img src="~/images/PolessUplogo.png" alt="logo" class="logo__img">
+            <h1 class="logo__text">CodeMer</h1>
+        </div>
+  
+        <form class="login__content" asp-controller="Auth" asp-action="Registration" method="post">
+            <div class="form">
+          
+                <div class="input">
+                    <img src="~/images/person.svg" alt="person">
+                    <input type="text" name="Name" placeholder="name">
+                </div>
+                <div class="input">
+                    <img src="~/images/person.svg" alt="person">
+                    <input type="text" name="Surname" placeholder="surname">
+                </div>
+                <div class="input">
+                    <img src="~/images/domain.svg" alt="domain">
+                    <input type="text" name="Town" placeholder="town">
+                </div>
+                <div class="input">
+                    <img src="~/images/mail.svg" alt="mail">
+                    <input type="email" name="Email" placeholder="email">
+                </div>
+                
+            </div>
+            <input class="btn" type="submit" value="Sign Up">
+        </form>
+    </div>
+</div> 
+  
+</body>
+</html>

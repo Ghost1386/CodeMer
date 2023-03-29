@@ -51,7 +51,7 @@ public class ProblemService : IProblemService
 
         var getAllProblemDto = problems.Select(problem => new GetAllProblemDto
         {
-            Id = problem.Id,
+            Id = problem.ProblemId,
             Title = problem.Title,
             Complexity = (ProblemComplexity)problem.Complexity,
             PartOfCollection = problem.PartOfCollection,
@@ -67,13 +67,13 @@ public class ProblemService : IProblemService
     public GetProblemDto Get(int id)
     {
         var problemWithDetails = _applicationContext.Problems.Include(problem => 
-            problem.ProblemDetail).FirstOrDefault(problem => problem.Id == id);
+            problem.ProblemDetailsId).FirstOrDefault(problem => problem.ProblemId == id);
 
         if (problemWithDetails != null)
         {
             var getProblemDto = new GetProblemDto
             {
-                Id = problemWithDetails.Id,
+                Id = problemWithDetails.ProblemId,
                 Title = problemWithDetails.Title,
                 Complexity = (ProblemComplexity)problemWithDetails.Complexity,
                 PartOfCollection = problemWithDetails.PartOfCollection,
@@ -91,7 +91,7 @@ public class ProblemService : IProblemService
     public void Update(UpdateProblemDto updateProblemDto)
     {
         var problem = _applicationContext.Problems.FirstOrDefault(problem => 
-            problem.Id == updateProblemDto.Id);
+            problem.ProblemId == updateProblemDto.Id);
 
         if (problem != null)
         {
@@ -106,7 +106,7 @@ public class ProblemService : IProblemService
             _applicationContext.SaveChanges();
             
             var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
-                problemDetails.Id == updateProblemDto.Id);
+                problemDetails.ProblemDetailsId == updateProblemDto.Id);
         
             if (problemDetails != null)
             {
@@ -123,7 +123,7 @@ public class ProblemService : IProblemService
     public void Delete(int id)
     {
         var problem = _applicationContext.Problems.FirstOrDefault(problem => 
-            problem.Id == id);
+            problem.ProblemId == id);
 
         if (problem != null)
         {
@@ -131,7 +131,7 @@ public class ProblemService : IProblemService
             _applicationContext.SaveChanges();
             
             var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
-                problemDetails.Id == id);
+                problemDetails.ProblemDetailsId == id);
             
             if (problemDetails != null)
             {
@@ -144,7 +144,7 @@ public class ProblemService : IProblemService
     public void Evaluation(EvaluationProblemDto evaluationProblemDto)
     {
         var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
-            problemDetails.Id == evaluationProblemDto.Id);
+            problemDetails.ProblemDetailsId == evaluationProblemDto.Id);
         
         if (problemDetails != null)
         {
@@ -161,7 +161,7 @@ public class ProblemService : IProblemService
             _applicationContext.SaveChanges();
             
             var problem = _applicationContext.Problems.FirstOrDefault(problem => 
-                problem.Id == evaluationProblemDto.Id);
+                problem.ProblemId == evaluationProblemDto.Id);
             
             if (problem != null)
             {

@@ -1,23 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeMer.Models.Models;
 
 public class Decision
 {
-    [Key]
-    public int Id { get; set; }
+    public int DecisionId { get; set; }
     
     public string Code { get; set; }
     
     public string UserEmail { get; set; }
-    
-    public List<User> User { get; set; }
-    
-    public int ProblemId { get; set; }
 
+    [ForeignKey("ProblemId")]
     public List<Problem> Problem { get; set; }
     
-    public int ProblemFinishesId { get; set; }
-    
+    [ForeignKey("ProblemFinishesId")]
     public List<ProblemFinish> ProblemFinishes { get; set; }
 }

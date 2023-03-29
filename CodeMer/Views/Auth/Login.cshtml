@@ -1,7 +1,4 @@
-﻿@model CodeMer.Common.DTO.AuthDto.AuthUserDto;
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +12,7 @@
   <div class="login__card">
     <div class="logo logo--big">
       <img class="image" src="~/images/PolessUplogo.png" alt="#">
-      <h1 class="logo__text">CodeMed</h1>
+      <h1 class="logo__text">CodeMer</h1>
     </div>
   
     <form class="login__content" asp-controller="Auth" asp-action="Login" method="post">
@@ -29,13 +26,13 @@
           <input type="password" name="Password" placeholder="password">
         </div>
       </div>
-      <a href="#" class="login__forgot text-small">
+      <a href="https://localhost:7029/Auth/ResetPassword/" class="login__forgot text-small" asp-controller="Auth" asp-action="ResetPassword">
         Forgot your password?
       </a>
       <input class="btn" type="submit" value="Sign In">
       <div class="login__signup text-small">
-        <a href="#"><u>Sign up</u></a> if you don’t have an account yet.
-      </div>
+                <a href="https://localhost:7029/Auth/Registration/"><u>Sign up</u></a> if you don’t have an account yet.
+              </div>
     </form>
   </div>
 </div>

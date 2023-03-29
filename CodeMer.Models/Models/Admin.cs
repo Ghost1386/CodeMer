@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CodeMer.Models.Models;
 
 public class Admin
 {
-    [Key]
-    public int Id { get; set; }
+    public int AdminId { get; set; }
     
     public string Key { get; set; }
     

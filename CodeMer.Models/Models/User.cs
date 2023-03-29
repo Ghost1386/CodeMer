@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeMer.Models.Models;
 
 public class User
 {
     [Key]
-    public int Id { get; set; }
+    public int UserId { get; set; }
     
     public string Name { get; set; }
     
@@ -19,7 +20,6 @@ public class User
     
     public int Role { get; set; }
     
+    [ForeignKey("ProblemFinishesId")]
     public List<ProblemFinish> ProblemFinishes { get; set; }
-    
-    public Decision Decision { get; set; }
 }

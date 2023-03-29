@@ -9,11 +9,12 @@ namespace CodeMer.BusinessLogic.Services;
 
 public class EmailService : IEmailService
 {
+    private const string EmailName = "PolessUp-CodeMer";
     private const string RegistrationType = "Регистрация";
     private const string ResetPasswordType = "Сброс пароля";
     private readonly string? _emailAddress;
     private readonly string? _emailPassword;
-    private const string Host = "smtp.yandex.ru";
+    private const string Host = "smtp.gmail.com";
 
     public EmailService(IConfiguration configuration)
     {
@@ -68,14 +69,14 @@ public class EmailService : IEmailService
         {
             var message = new MimeMessage();
 
-            message.From.Add(new MailboxAddress(email.Type, _emailAddress));
-            message.To.Add(new MailboxAddress(email.Type, email.UserEmail));
+            message.From.Add(new MailboxAddress(EmailName, _emailAddress));
+            message.To.Add(new MailboxAddress("", email.UserEmail));
             message.Subject = email.Subject;
 
             message.Body = email.Body.ToMessageBody();
 
             using var client = new SmtpClient();
-            await client.ConnectAsync(Host, 587, false);
+            await client.ConnectAsync(Host, 465, false);
             await client.AuthenticateAsync(_emailAddress, _emailPassword);
             await client.SendAsync(message);
 

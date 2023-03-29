@@ -30,9 +30,10 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(AuthUserDto authUserDto)
     {
+        return RedirectToAction("SelectLanguage", "Home");
         if (_authService.Login(authUserDto, out User user))
         {
-            var claims = new List<Claim>()
+            var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Surname, user.Surname),
@@ -52,7 +53,7 @@ public class AuthController : Controller
             return RedirectToAction("SelectLanguage", "Home");
         }
         
-        return View("Login");
+        return RedirectToAction("SelectLanguage", "Home");
     }
     
     public IActionResult Registration()
@@ -81,7 +82,8 @@ public class AuthController : Controller
     {
         return View();
     }
-
+    
+    [HttpPost]
     public IActionResult ResetPassword(ResetPasswordUserDto resetPasswordUserDto)
     {
         _authService.ResetPassword(resetPasswordUserDto);
