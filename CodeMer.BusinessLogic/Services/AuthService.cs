@@ -46,7 +46,7 @@ public class AuthService : IAuthService
         {
             var user = _mapper.Map<RegistrationUserDto, User>(registrationUserDto);
 
-            user.Role = (int)Role.Pupil;
+            user.Role = (int)Role.User;
 
             var password = _generatorService.Generator(8, 0);
 

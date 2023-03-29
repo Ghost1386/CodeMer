@@ -15,13 +15,11 @@ public class AuthController : Controller
 {
     private readonly ILogger<AuthController> _logger;
     private readonly IAuthService _authService;
-    private readonly IUserService _userService;
 
-    public AuthController(ILogger<AuthController> logger, IAuthService authService, IUserService userService)
+    public AuthController(ILogger<AuthController> logger, IAuthService authService)
     {
         _logger = logger;
         _authService = authService;
-        _userService = userService;
     }
 
     public IActionResult Login()
@@ -51,7 +49,7 @@ public class AuthController : Controller
             _logger.LogInformation($"{DateTime.Now.ToString(CultureInfo.CurrentCulture)}: user with " +
                                    $"email {user.Email} is signed id.");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("SelectLanguage", "Home");
         }
         
         return View("Login");
