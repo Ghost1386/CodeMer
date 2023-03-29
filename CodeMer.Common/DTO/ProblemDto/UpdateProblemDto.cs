@@ -16,7 +16,7 @@ public class UpdateProblemDto
 
     public int TimesComplete { get; set; }
 
-    public List<Tags> Tags { get; set; }
+    public Tags Tags { get; set; }
     
     public string Text { get; set; }
     

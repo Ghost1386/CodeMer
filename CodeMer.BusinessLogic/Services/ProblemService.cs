@@ -26,7 +26,7 @@ public class ProblemService : IProblemService
             TimeComplete = createProblemDto.TimeComplete,
             Rating = 0,
             TimesComplete = createProblemDto.TimesComplete,
-            Tags = createProblemDto.Tags.Select(tag => (int)tag).ToList()
+            Tags = (int)createProblemDto.Tags
         };
 
         _applicationContext.Problems.Add(problem);
@@ -58,7 +58,7 @@ public class ProblemService : IProblemService
             TimeComplete = problem.TimeComplete,
             Rating = problem.Rating,
             TimesComplete = problem.TimesComplete,
-            Tags = problem.Tags.Select(tag => (Tags)tag).ToList()
+            Tags = (Tags)problem.Tags
         }).ToList();
 
         return getAllProblemDto;
@@ -79,7 +79,7 @@ public class ProblemService : IProblemService
                 PartOfCollection = problemWithDetails.PartOfCollection,
                 TimeComplete = problemWithDetails.TimeComplete,
                 TimesComplete = problemWithDetails.TimesComplete,
-                Tags = problemWithDetails.Tags.Select(tag => (Tags)tag).ToList()
+                Tags = (Tags) problemWithDetails.Tags
             };
 
             return getProblemDto;
@@ -100,7 +100,7 @@ public class ProblemService : IProblemService
             problem.PartOfCollection = updateProblemDto.PartOfCollection;
             problem.TimeComplete = updateProblemDto.TimeComplete;
             problem.TimesComplete = updateProblemDto.TimesComplete;
-            problem.Tags = updateProblemDto.Tags.Select(tag => (int)tag).ToList();
+            problem.Tags = (int)updateProblemDto.Tags;
             
             _applicationContext.Problems.Update(problem);
             _applicationContext.SaveChanges();

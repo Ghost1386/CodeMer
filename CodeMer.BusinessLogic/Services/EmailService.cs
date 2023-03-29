@@ -10,6 +10,7 @@ namespace CodeMer.BusinessLogic.Services;
 public class EmailService : IEmailService
 {
     private const string RegistrationType = "Регистрация";
+    private const string ResetPasswordType = "Сброс пароля";
     private readonly string? _emailAddress;
     private readonly string? _emailPassword;
     private const string Host = "smtp.yandex.ru";
@@ -31,7 +32,28 @@ public class EmailService : IEmailService
         
         var email = new Email
         {
+            UserEmail = registrationUserDto.Email,
             Type = RegistrationType,
+            Body = bodyBuilder,
+        };
+
+        var isSanded = await SendEmail(email);
+
+        return isSanded;
+    }
+    
+    public async Task<bool> ResetPasswordBody(ResetPasswordUserDto resetPasswordUserDto, string password)
+    {
+        var bodyBuilder = new BodyBuilder
+        {
+            TextBody = $"Ваш новый пароль для авторизации на сайте CodeMer\n" +
+                       $"{password}"
+        };
+        
+        var email = new Email
+        {
+            UserEmail = resetPasswordUserDto.Email,
+            Type = ResetPasswordType,
             Body = bodyBuilder,
         };
 
@@ -47,7 +69,7 @@ public class EmailService : IEmailService
             var message = new MimeMessage();
 
             message.From.Add(new MailboxAddress(email.Type, _emailAddress));
-            message.To.Add(new MailboxAddress("", _emailAddress));
+            message.To.Add(new MailboxAddress(email.Type, email.UserEmail));
             message.Subject = email.Subject;
 
             message.Body = email.Body.ToMessageBody();

@@ -1,4 +1,5 @@
-﻿using CodeMer.Models.Models;
+﻿using CodeMer.Common.DTO.UserDto;
+using CodeMer.Models.Models;
 
 namespace CodeMer.BusinessLogic.Interfaces;
 
@@ -8,5 +9,11 @@ public interface IUserService
     
     User Get(string email, string password);
 
+    User Get(string email);
+
+    void ResetPassword(User user);
+
     bool CheckEmail(string email);
+
+    void ChangeRole(ChangeUserRoleDto changeUserRoleDto);
 }

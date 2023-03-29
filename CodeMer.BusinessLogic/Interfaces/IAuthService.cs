@@ -8,4 +8,6 @@ public interface IAuthService
     bool Login(AuthUserDto authUserDto, out User user);
 
     bool Registration(RegistrationUserDto registrationUserDto);
+
+    void ResetPassword(ResetPasswordUserDto resetPasswordUserDto);
 }

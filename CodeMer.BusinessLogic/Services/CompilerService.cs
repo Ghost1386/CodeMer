@@ -16,21 +16,22 @@ public class CompilerService : ICompilerService
 
     private readonly IDecisionService _decisionService;
     private readonly IProblemFinishService _problemFinishService;
-    private readonly ResponseCompilerDto _responseCompilerDto;
-    private readonly FileSystemWatcher _fileSystemWatcher;
+    //private readonly ResponseCompilerDto _responseCompilerDto;
+    /*private readonly FileSystemWatcher _fileSystemWatcher;*/
     private readonly Tests _tests;
 
-    public CompilerService(FileSystemWatcher fileSystemWatcher, Tests tests, ResponseCompilerDto responseCompilerDto, 
+    public CompilerService(Tests tests, 
         IDecisionService decisionService, IProblemFinishService problemFinishService)
     {
-        _responseCompilerDto = responseCompilerDto;
+        //_responseCompilerDto = responseCompilerDto;
         _decisionService = decisionService;
         _problemFinishService = problemFinishService;
         _tests = tests;
         
-        _fileSystemWatcher = fileSystemWatcher;
+        /*_fileSystemWatcher = fileSystemWatcher;
+        _fileSystemWatcher.EnableRaisingEvents = true;
         _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite;
-        _fileSystemWatcher.Changed += OnChanged;
+        _fileSystemWatcher.Changed += OnChanged;*/
     }
     
     public ResponseCompilerDto Compiler(RequestCompilerDto requestCompilerDto)
@@ -45,7 +46,7 @@ public class CompilerService : ICompilerService
 
             _problemId = requestCompilerDto.ProblemId;
 
-            _fileSystemWatcher.Path = filePath;
+            //_fileSystemWatcher.Path = filePath;
             
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -54,13 +55,26 @@ public class CompilerService : ICompilerService
                 fileStream.WriteAsync(buffer, 0, buffer.Length);
             }
 
-            responseCompilerDto = _responseCompilerDto;
+            //responseCompilerDto = _responseCompilerDto;
 
             if (responseCompilerDto.Message == "Success")
             {
                 CreateProblemFinish(requestCompilerDto, decisionId);
             }
+            
+            switch (_problemId)
+            {
+                case 1:
+                    _tests.TestForTask_1(5, 2, 7);
+                    _tests.TestForTask_1(2, 24, 26);
+                    _tests.TestForTask_1(0, 2321, 2321);
+                    break;
+                default:
+                    break;
+            }
 
+            //_responseCompilerDto.Message = "Success";
+            //_responseCompilerDto.StatusCode = 200;
         }
         catch (Exception ex)
         {
@@ -71,7 +85,7 @@ public class CompilerService : ICompilerService
         return responseCompilerDto;
     }
     
-    private void OnChanged(object sender, FileSystemEventArgs e)
+    /*private void OnChanged(object sender, FileSystemEventArgs e)
     {
         try
         {
@@ -99,7 +113,7 @@ public class CompilerService : ICompilerService
             _responseCompilerDto.Message = ex.Message;
             _responseCompilerDto.StatusCode = 500;
         }
-    }
+    }*/
 
     private int CreateDecision(RequestCompilerDto requestCompilerDto)
     {

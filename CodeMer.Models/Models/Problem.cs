@@ -19,7 +19,7 @@ public class Problem
     
     public int TimesComplete { get; set; }
 
-    public List<int> Tags { get; set; }
+    public int Tags { get; set; }
     
     public ProblemDetails ProblemDetail { get; set; }
     

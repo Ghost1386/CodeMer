@@ -15,11 +15,13 @@ public class AuthController : Controller
 {
     private readonly ILogger<AuthController> _logger;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
-    public AuthController(ILogger<AuthController> logger, IAuthService authService)
+    public AuthController(ILogger<AuthController> logger, IAuthService authService, IUserService userService)
     {
         _logger = logger;
         _authService = authService;
+        _userService = userService;
     }
 
     public IActionResult Login()
@@ -75,6 +77,18 @@ public class AuthController : Controller
         };
         
         return RedirectToAction("Errors", "Errors", errorsDto);
+    }
+
+    public IActionResult ResetPassword()
+    {
+        return View();
+    }
+
+    public IActionResult ResetPassword(ResetPasswordUserDto resetPasswordUserDto)
+    {
+        _authService.ResetPassword(resetPasswordUserDto);
+
+        return View("Login");
     }
     
     [Authorize]

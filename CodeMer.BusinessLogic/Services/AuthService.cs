@@ -61,4 +61,18 @@ public class AuthService : IAuthService
 
         return false;
     }
+
+    public void ResetPassword(ResetPasswordUserDto resetPasswordUserDto)
+    {
+        var user = _userService.Get(resetPasswordUserDto.Email);
+        
+        if (user != null)
+        {
+            var newPassword = _generatorService.Generator(8, 0);
+            
+            _emailService.ResetPasswordBody(resetPasswordUserDto, newPassword);
+            
+            _userService.ResetPassword(user);
+        }
+    }
 }

@@ -5,5 +5,6 @@ public enum Role
     User,
     Pupil,
     Student,
+    Mentor,
     Admin
 }

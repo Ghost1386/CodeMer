@@ -10,6 +10,7 @@
       <ProjectReference Include="..\CodeMer.BusinessLogic\CodeMer.BusinessLogic.csproj" />
       <ProjectReference Include="..\CodeMer.Common\CodeMer.Common.csproj" />
       <ProjectReference Include="..\CodeMer.Dependencies\CodeMer.Dependencies.csproj" />
+      <ProjectReference Include="..\CodeMer.Mapper\CodeMer.Mapper.csproj" />
     </ItemGroup>
 
     <ItemGroup>

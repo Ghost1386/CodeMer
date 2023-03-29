@@ -28,14 +28,27 @@ public class UserService : IUserService
 
         return user;
     }
-
-    public bool CheckEmail(string email)
+    
+    public User Get(string email)
     {
-        var user = _applicationContext.Users.Any(user => user.Email == email);
+        var user = _applicationContext.Users.FirstOrDefault(user => user.Email == email);
 
         return user;
     }
 
+    public bool CheckEmail(string email)
+    {
+        var checkUser = _applicationContext.Users.Any(user => user.Email == email);
+
+        return checkUser;
+    }
+
+    public void ResetPassword(User user)
+    {
+        _applicationContext.Users.Update(user);
+        _applicationContext.SaveChanges();
+    }
+    
     public void ChangeRole(ChangeUserRoleDto changeUserRoleDto)
     {
         var user = _applicationContext.Users.FirstOrDefault(user => user.Email == changeUserRoleDto.Email);

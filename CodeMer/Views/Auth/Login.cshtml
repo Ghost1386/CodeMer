@@ -1,37 +1,43 @@
 ﻿@model CodeMer.Common.DTO.AuthDto.AuthUserDto;
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CodeMer</title>
-
-    <link rel="stylesheet" href="~/css/Login.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="~/css/Login.css">
+  <title>Login</title>
 </head>
 <body>
-<section>
-    <img class="image" src="~/images/LogoPolessUp.jpg" alt="#">
-    
-    <h2>CodeMer</h2>
-    
-    <form class="input-group">
-        <input type="email" placeholder="email" id="email">
-        <input type="password" placeholder="password" id="password">
+<div class="login">
+  <div class="login__card">
+    <div class="logo logo--big">
+      <img class="image" src="~/images/PolessUplogo.png" alt="#">
+      <h1 class="logo__text">CodeMed</h1>
+    </div>
+  
+    <form class="login__content" asp-controller="Auth" asp-action="Login" method="post">
+      <div class="form">
+        <div class="input">
+          <img src="~/images/mail.svg" alt="mail">
+          <input type="email" name="Email" placeholder="email">
+        </div>
+        <div class="input">
+          <img src="~/images/lock.svg" alt="lock">
+          <input type="password" name="Password" placeholder="password">
+        </div>
+      </div>
+      <a href="#" class="login__forgot text-small">
+        Forgot your password?
+      </a>
+      <input class="btn" type="submit" value="Sign In">
+      <div class="login__signup text-small">
+        <a href="#"><u>Sign up</u></a> if you don’t have an account yet.
+      </div>
     </form>
-
-    <div class="forget">
-            <a href="#">Forgot your password?</a>
-        </div>
-
-        <div class="button-container">
-            <button class="btn" onclick="loginCode()"> SIGN IN </button>
-        </div>
-
-        <div class="register">
-            <p><a href="#">Sign up</a> if you don’t have an account yet.</p>
-        </div>
-        
-</section>
-    <script src="js/login.js"></script>
+  </div>
+</div>
 </body>
 </html>
