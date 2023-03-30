@@ -6,7 +6,7 @@ public interface IProblemService
 {
     void Create(CreateProblemDto createProblemDto);
 
-    List<GetAllProblemDto> GetAll();
+    List<GetAllProblemDto> GetAll(int userId);
 
     GetProblemDto Get(int id);
 

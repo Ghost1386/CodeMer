@@ -45,9 +45,10 @@ public class ProblemService : IProblemService
         _applicationContext.SaveChanges();
     }
 
-    public List<GetAllProblemDto> GetAll()
+    public List<GetAllProblemDto> GetAll(int userId)
     {
-        var problems = _applicationContext.Problems.ToList();
+        var problems = _applicationContext.Problems.Include(problem =>
+            problem.ProblemFinishes).ToList();
 
         var getAllProblemDto = problems.Select(problem => new GetAllProblemDto
         {
@@ -58,7 +59,9 @@ public class ProblemService : IProblemService
             TimeComplete = problem.TimeComplete,
             Rating = problem.Rating,
             TimesComplete = problem.TimesComplete,
-            Tags = (Tags)problem.Tags
+            Tags = (Tags) problem.Tags,
+            Сompleteness = (Сompleteness) problem.ProblemFinishes.FirstOrDefault(finish => 
+                finish.UserId == userId)!.Сompleteness
         }).ToList();
 
         return getAllProblemDto;
