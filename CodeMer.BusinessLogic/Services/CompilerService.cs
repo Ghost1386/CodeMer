@@ -134,7 +134,8 @@ public class CompilerService : ICompilerService
             DateTime = DateTime.Now.ToString(CultureInfo.CurrentCulture),
             UserEmail = requestCompilerDto.UserEmail,
             ProblemId = requestCompilerDto.ProblemId,
-            DecisionsId = decisionId
+            DecisionsId = decisionId,
+            
         };
         
         _problemFinishService.Create(createProblemFinishDto);

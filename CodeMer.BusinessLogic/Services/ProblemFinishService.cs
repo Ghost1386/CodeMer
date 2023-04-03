@@ -3,6 +3,7 @@ using CodeMer.BusinessLogic.Interfaces;
 using CodeMer.Common.DTO.ProblemFinishDto;
 using CodeMer.Models;
 using CodeMer.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeMer.BusinessLogic.Services;
 
@@ -23,5 +24,13 @@ public class ProblemFinishService : IProblemFinishService
 
         _applicationContext.ProblemFinishes.Add(problemFinish);
         _applicationContext.SaveChanges();
+    }
+
+    public List<ProblemFinish> GetAllByUserId(int userId)
+    {
+        var problemFinishes = _applicationContext.ProblemFinishes.Include(problemFinishes 
+            => problemFinishes.Users.Where(user => user.UserId == userId)).ToList();
+        
+        return problemFinishes;
     }
 }

@@ -19,7 +19,6 @@ public class ApplicationContext : DbContext
     }
 
     public DbSet<Admin> Admins { get; set; }
-    public DbSet<Decision> Decisions { get; set; }
     public DbSet<Problem> Problems { get; set; }
     public DbSet<ProblemDetails> ProblemDetails { get; set; }
     public DbSet<ProblemFinish> ProblemFinishes { get; set; }

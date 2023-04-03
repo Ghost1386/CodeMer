@@ -18,7 +18,7 @@ public class ProblemController : Controller
     public IActionResult Problems()
     {
         var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        
+
         return View(_problemService.GetAll(userId));
     }
 }

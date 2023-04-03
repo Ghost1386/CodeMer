@@ -19,13 +19,15 @@ public class DecisionService : IDecisionService
 
     public int Create(CreateDecisionDto createDecisionDto)
     {
-        var decision = _mapper.Map<CreateDecisionDto, Decision>(createDecisionDto);
+        /*var decision = _mapper.Map<CreateDecisionDto, Decision>(createDecisionDto);
         
         _applicationContext.Decisions.Add(decision);
         _applicationContext.SaveChanges();
 
         var decisionId = _applicationContext.Decisions.Count();
 
-        return decisionId;
+        return decisionId;*/
+
+        return 0;
     }
 }

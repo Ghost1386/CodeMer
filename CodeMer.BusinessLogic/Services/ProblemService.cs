@@ -10,10 +10,13 @@ namespace CodeMer.BusinessLogic.Services;
 public class ProblemService : IProblemService
 {
     private readonly ApplicationContext _applicationContext;
+    private readonly IProblemFinishService _problemFinishService;
 
-    public ProblemService(ApplicationContext applicationContext)
+    public ProblemService(ApplicationContext applicationContext, 
+        IProblemFinishService problemFinishService)
     {
         _applicationContext = applicationContext;
+        _problemFinishService = problemFinishService;
     }
 
     public void Create(CreateProblemDto createProblemDto)
@@ -50,6 +53,8 @@ public class ProblemService : IProblemService
         var problems = _applicationContext.Problems.Include(problem =>
             problem.ProblemFinishes).ToList();
 
+        var problemFinish = _problemFinishService.GetAllByUserId(userId);
+
         var getAllProblemDto = problems.Select(problem => new GetAllProblemDto
         {
             Id = problem.ProblemId,
@@ -60,8 +65,8 @@ public class ProblemService : IProblemService
             Rating = problem.Rating,
             TimesComplete = problem.TimesComplete,
             Tags = (Tags) problem.Tags,
-            Сompleteness = (Сompleteness) problem.ProblemFinishes.FirstOrDefault(finish => 
-                finish.UserId == userId)!.Сompleteness
+            Сompleteness = (Сompleteness) problemFinish.FirstOrDefault(p => 
+                p.ProblemFinishId == problem.ProblemId)!.Сompleteness
         }).ToList();
 
         return getAllProblemDto;

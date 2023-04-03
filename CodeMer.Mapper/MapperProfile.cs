@@ -11,7 +11,6 @@ public class MapperProfile : Profile
     public MapperProfile()
     {
         CreateMap<RegistrationUserDto, User>();
-        CreateMap<CreateDecisionDto, Decision>();
         CreateMap<CreateProblemFinishDto, ProblemFinish>();
     }
 }

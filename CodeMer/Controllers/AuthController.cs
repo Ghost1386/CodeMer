@@ -30,7 +30,6 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(AuthUserDto authUserDto)
     {
-        return RedirectToAction("SelectLanguage", "Home");
         if (_authService.Login(authUserDto, out User user))
         {
             var claims = new List<Claim>
@@ -54,7 +53,7 @@ public class AuthController : Controller
             return RedirectToAction("SelectLanguage", "Home");
         }
         
-        return RedirectToAction("SelectLanguage", "Home");
+        return RedirectToAction("Login", "Auth");
     }
     
     public IActionResult Registration()
