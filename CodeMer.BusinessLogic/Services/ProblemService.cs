@@ -39,8 +39,13 @@ public class ProblemService : IProblemService
             Likes = 0,
             DisLikes = 0,
             Text = createProblemDto.Text,
-            Example1 = createProblemDto.Example1,
-            Example2 = createProblemDto.Example2
+            InputEx1 = createProblemDto.InputEx1,
+            OutputEx1 = createProblemDto.OutputEx1,
+            InputEx2 = createProblemDto.InputEx2,
+            OutputEx2 = createProblemDto.OutputEx2,
+            InputEx3 = createProblemDto.InputEx3,
+            OutputEx3 = createProblemDto.OutputEx3,
+            ProblemId = problem.ProblemId
         };
 
         _applicationContext.ProblemDetails.Add(problemDetails);
@@ -75,7 +80,7 @@ public class ProblemService : IProblemService
     public GetProblemDto Get(int id)
     {
         var problemWithDetails = _applicationContext.Problems.Include(problem => 
-            problem.ProblemDetailsId).FirstOrDefault(problem => problem.ProblemId == id);
+            problem.ProblemDetails).FirstOrDefault(problem => problem.ProblemId == id);
 
         if (problemWithDetails != null)
         {
@@ -83,11 +88,14 @@ public class ProblemService : IProblemService
             {
                 Id = problemWithDetails.ProblemId,
                 Title = problemWithDetails.Title,
-                Complexity = (ProblemComplexity)problemWithDetails.Complexity,
-                PartOfCollection = problemWithDetails.PartOfCollection,
-                TimeComplete = problemWithDetails.TimeComplete,
-                TimesComplete = problemWithDetails.TimesComplete,
-                Tags = (Tags) problemWithDetails.Tags
+                ProblemComplexity = (ProblemComplexity)problemWithDetails.Complexity,
+                Text = problemWithDetails.ProblemDetails.Text,
+                InputEx1 = problemWithDetails.ProblemDetails.InputEx1,
+                OutputEx1 = problemWithDetails.ProblemDetails.OutputEx1,
+                InputEx2 = problemWithDetails.ProblemDetails.InputEx2,
+                OutputEx2 = problemWithDetails.ProblemDetails.OutputEx2,
+                InputEx3 = problemWithDetails.ProblemDetails.InputEx3,
+                OutputEx3 = problemWithDetails.ProblemDetails.OutputEx3
             };
 
             return getProblemDto;
@@ -111,16 +119,19 @@ public class ProblemService : IProblemService
             problem.Tags = (int)updateProblemDto.Tags;
             
             _applicationContext.Problems.Update(problem);
-            _applicationContext.SaveChanges();
-            
+
             var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
                 problemDetails.ProblemDetailsId == updateProblemDto.Id);
         
             if (problemDetails != null)
             {
                 problemDetails.Text = updateProblemDto.Text;
-                problemDetails.Example1 = updateProblemDto.Example1;
-                problemDetails.Example2 = updateProblemDto.Example2;
+                problemDetails.InputEx1 = updateProblemDto.InputEx1;
+                problemDetails.OutputEx1 = updateProblemDto.OutputEx1;
+                problemDetails.InputEx2 = updateProblemDto.InputEx2;
+                problemDetails.OutputEx2 = updateProblemDto.OutputEx2;
+                problemDetails.InputEx3 = updateProblemDto.InputEx3;
+                problemDetails.OutputEx3 = updateProblemDto.OutputEx3;
 
                 _applicationContext.ProblemDetails.Update(problemDetails);
                 _applicationContext.SaveChanges();
@@ -136,8 +147,7 @@ public class ProblemService : IProblemService
         if (problem != null)
         {
             _applicationContext.Problems.Remove(problem);
-            _applicationContext.SaveChanges();
-            
+
             var problemDetails = _applicationContext.ProblemDetails.FirstOrDefault(problemDetails => 
                 problemDetails.ProblemDetailsId == id);
             
@@ -166,8 +176,7 @@ public class ProblemService : IProblemService
             }
             
             _applicationContext.ProblemDetails.Update(problemDetails);
-            _applicationContext.SaveChanges();
-            
+
             var problem = _applicationContext.Problems.FirstOrDefault(problem => 
                 problem.ProblemId == evaluationProblemDto.Id);
             

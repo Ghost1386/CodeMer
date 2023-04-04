@@ -14,9 +14,17 @@ public class ProblemDetails
     
     public string Text { get; set; }
     
-    public string Example1 { get; set; }
+    public string InputEx1 { get; set; }
     
-    public string Example2 { get; set; }
+    public string OutputEx1 { get; set; }
+    
+    public string InputEx2 { get; set; }
+    
+    public string OutputEx2 { get; set; }
+    
+    public string InputEx3 { get; set; }
+    
+    public string OutputEx3 { get; set; }
     
     [ForeignKey("ProblemId")]
     public int ProblemId { get; set; }

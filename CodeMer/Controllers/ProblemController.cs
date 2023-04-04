@@ -21,4 +21,11 @@ public class ProblemController : Controller
 
         return View(_problemService.GetAll(userId));
     }
+
+    public IActionResult GetProblem(int id)
+    {
+        var problem = _problemService.Get(id);
+
+        return View(problem);
+    }
 }
