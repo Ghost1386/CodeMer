@@ -149,7 +149,7 @@
                   {
                     <div class="item__difficult item__difficult--red text-small text-bold">@item.Complexity</div>
                   }
-                  <h2 href="https://localhost:7029/Problem/GetProblem/{@item.Id}" class="item__title text-bold">@item.Title</h2>
+                  <a href='@string.Format("https://localhost:7029/Problem/GetProblem/" + item.Id)' class="item__title text-bold">@item.Title</a>
                 </div>
                 <div class="info item__info">
                   <div class="info__item">

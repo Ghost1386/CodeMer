@@ -13,7 +13,6 @@ public static class Dependencies
         services.AddTransient<IAdminService, AdminService>();
         services.AddTransient<IAuthService, AuthService>();
         services.AddScoped<ICompilerService, CompilerService>();
-        services.AddTransient<IDecisionService, DecisionService>();
         services.AddTransient<IEmailService, EmailService>();
         services.AddTransient<IGeneratorService, GeneratorService>();
         services.AddTransient<IProblemFinishService, ProblemFinishService>();

@@ -134,9 +134,10 @@
       </div>
 
     </div>
-    <div class="detailed-task__editor detailed-task__card">
-      <div class="editor" id="editor"></div>
-    </div>
+    
+    <div class="editor" id="editor"></div>
+    <script src="~/js/lib/ace.js"></script>
+      <script src="~/js/lib/theme-one_dark.js"></script>
     <div class="detailed-task__controls detailed-task__card">
       <div class="controls__tabs">
         <button class="controls__tab text-medium controls__tab--active">
@@ -172,14 +173,13 @@
           </label>
         </div>
       </div>
-
       <div class="controls__footer">
         <select default-value="console" class="controls__select">
           <option value="console">Console1</option>
           <option value="console">Console2</option>
         </select>
         <div class="footer__btns">
-          <button class="controls__btn">
+          <button class="controls__btn" onclick="executeCode()">
             Run
           </button>
           <button class="controls__btn controls__btn--green">
@@ -189,5 +189,6 @@
       </div>
     </div>
   </div>
+  <script src="~/js/ide.js"></script>
 </body>
 </html>

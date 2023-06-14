@@ -58,7 +58,7 @@ public class ProblemService : IProblemService
         var problems = _applicationContext.Problems.Include(problem =>
             problem.ProblemFinishes).ToList();
 
-        var problemFinish = _problemFinishService.GetAllByUserId(userId);
+        var problemFinish = _problemFinishService.GetAllByUserId(userId).AsQueryable();
 
         var getAllProblemDto = problems.Select(problem => new GetAllProblemDto
         {
@@ -70,11 +70,20 @@ public class ProblemService : IProblemService
             Rating = problem.Rating,
             TimesComplete = problem.TimesComplete,
             Tags = (Tags) problem.Tags,
-            Сompleteness = (Сompleteness) problemFinish.FirstOrDefault(p => 
-                p.ProblemFinishId == problem.ProblemId)!.Сompleteness
+            Сompleteness = GetEnumOfComplete(problemFinish, problem.ProblemId)
         }).ToList();
 
         return getAllProblemDto;
+    }
+
+    private static Сompleteness GetEnumOfComplete(IQueryable<ProblemFinish> problemFinish, int problemId)
+    {
+        if (problemFinish.Any(p => p.ProblemFinishId == problemId))
+        {
+            return Сompleteness.Finished;
+        }
+        
+        return Сompleteness.Performed;
     }
 
     public GetProblemDto Get(int id)
