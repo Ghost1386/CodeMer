@@ -45,6 +45,7 @@ public class ProblemService : IProblemService
             OutputEx2 = createProblemDto.OutputEx2,
             InputEx3 = createProblemDto.InputEx3,
             OutputEx3 = createProblemDto.OutputEx3,
+            DefaultCode = createProblemDto.DefaultCode,
             ProblemId = problem.ProblemId
         };
 
@@ -104,9 +105,12 @@ public class ProblemService : IProblemService
                 InputEx2 = problemWithDetails.ProblemDetails.InputEx2,
                 OutputEx2 = problemWithDetails.ProblemDetails.OutputEx2,
                 InputEx3 = problemWithDetails.ProblemDetails.InputEx3,
-                OutputEx3 = problemWithDetails.ProblemDetails.OutputEx3
+                OutputEx3 = problemWithDetails.ProblemDetails.OutputEx3,
+                DefaultCode = problemWithDetails.ProblemDetails.DefaultCode
             };
 
+            IProblemService.ProblemId = getProblemDto.Id;
+            
             return getProblemDto;
         }
 
@@ -141,6 +145,7 @@ public class ProblemService : IProblemService
                 problemDetails.OutputEx2 = updateProblemDto.OutputEx2;
                 problemDetails.InputEx3 = updateProblemDto.InputEx3;
                 problemDetails.OutputEx3 = updateProblemDto.OutputEx3;
+                problemDetails.DefaultCode = updateProblemDto.DefaultCode;
 
                 _applicationContext.ProblemDetails.Update(problemDetails);
                 _applicationContext.SaveChanges();

@@ -1,9 +1,8 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
 using System.Text;
 using CodeMer.BusinessLogic.Interfaces;
 using CodeMer.BusinessLogicTests;
 using CodeMer.Common.DTO.CompilerDto;
-using CodeMer.Common.DTO.DecisionDto;
 using CodeMer.Common.DTO.ProblemFinishDto;
 using Exception = System.Exception;
 
@@ -12,14 +11,16 @@ namespace CodeMer.BusinessLogic.Services;
 public class CompilerService : ICompilerService
 {
     private const string Path = "C:/Users/egor5/OneDrive/Рабочий стол/CodeMer/CodeMer.ProblemMainFiles/";
-    private int _problemId;
-    
+    private const int ConstantToConvert = 1000;
+
     private readonly IProblemFinishService _problemFinishService;
+    private readonly IUserService _userService;
     private readonly Tests _tests;
 
-    public CompilerService(Tests tests, IProblemFinishService problemFinishService)
+    public CompilerService(Tests tests, IProblemFinishService problemFinishService, IUserService userService)
     {
         _problemFinishService = problemFinishService;
+        _userService = userService;
         _tests = tests;
     }
     
@@ -29,9 +30,10 @@ public class CompilerService : ICompilerService
         
         try
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
             var filePath = Path + $"Task{requestCompilerDto.ProblemId}.cs";
-
-            _problemId = requestCompilerDto.ProblemId;
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -39,22 +41,14 @@ public class CompilerService : ICompilerService
 
                 fileStream.WriteAsync(buffer, 0, buffer.Length);
             }
-
-            if (responseCompilerDto.Message == "Success")
-            {
-                CreateProblemFinish(requestCompilerDto);
-            }
             
-            switch (_problemId)
-            {
-                case 1:
-                    _tests.TestForTask_1(5, 2, 7);
-                    _tests.TestForTask_1(2, 24, 26);
-                    _tests.TestForTask_1(0, 2321, 2321);
-                    break;
-                default:
-                    break;
-            }
+            stopwatch.Stop();
+
+            var fileWriteTime = (int)stopwatch.ElapsedMilliseconds;
+            
+            Task.Delay(fileWriteTime * 1000);
+
+            CheckingTasksOnTests(requestCompilerDto.ProblemId);
 
             responseCompilerDto.Message = "Success";
             responseCompilerDto.StatusCode = 200;
@@ -64,17 +58,35 @@ public class CompilerService : ICompilerService
             responseCompilerDto.Message = ex.Message;
             responseCompilerDto.StatusCode = 500;
         }
+        
+        if (responseCompilerDto.Message == "Success")
+        {
+            CreateProblemFinish(requestCompilerDto);
+        }
 
         return responseCompilerDto;
+    }
+
+    private void CheckingTasksOnTests(int problemId)
+    {
+        switch (problemId)
+        {
+            case 1:
+                _tests.TestForTask_1(5, 2, 7);
+                _tests.TestForTask_1(2, 24, 26);
+                _tests.TestForTask_1(0, 2321, 2321);
+                break;
+            default:
+                break;
+        }
     }
 
     private void CreateProblemFinish(RequestCompilerDto requestCompilerDto)
     {
         var createProblemFinishDto = new CreateProblemFinishDto
         {
-            DateTime = DateTime.Now.ToString(CultureInfo.CurrentCulture),
-            UserEmail = requestCompilerDto.UserEmail,
-            ProblemId = requestCompilerDto.ProblemId,
+            UserId = _userService.Get(requestCompilerDto.UserEmail).UserId,
+            ProblemId = requestCompilerDto.ProblemId
         };
         
         _problemFinishService.Create(createProblemFinishDto);

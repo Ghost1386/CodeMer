@@ -4,6 +4,8 @@ namespace CodeMer.BusinessLogic.Interfaces;
 
 public interface IProblemService
 {
+    static int ProblemId { get; set; }
+    
     void Create(CreateProblemDto createProblemDto);
 
     List<GetAllProblemDto> GetAll(int userId);

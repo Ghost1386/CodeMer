@@ -1,8 +1,9 @@
-﻿using CodeMer.Common.Enums;
+﻿using CodeMer.Common.DTO.CompilerDto;
+using CodeMer.Common.Enums;
 
 namespace CodeMer.Common.DTO.ProblemDto;
 
-public class GetProblemDto
+public class GetProblemDto : RequestCompilerDto
 {
     public int Id { get; set; }
     
@@ -27,4 +28,6 @@ public class GetProblemDto
     public string InputEx3 { get; set; }
     
     public string OutputEx3 { get; set; }
+    
+    public string DefaultCode { get; set; }
 }

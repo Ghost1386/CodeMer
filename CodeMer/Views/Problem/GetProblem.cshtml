@@ -130,65 +130,70 @@
             <div class="example__data"><b>Input: </b>@Model.InputEx3</div>
             <div class="example__data"><b>Output: </b>@Model.OutputEx3</div>
           </div>
-          </div>
+        </div>
       </div>
+    </div>
+    <div class="editor" id="editor">@Model.DefaultCode</div>
+      <div class="detailed-task__controls detailed-task__card">
+            <div class="controls__tabs">
+              <button class="controls__tab text-medium controls__tab--active">
+                Testcase
+              </button>
+              <button class="controls__tab text-medium">
+                Result
+              </button>
+              <div class="output"></div>
+            </div>
+            <div class="controls__content">
+              <div class="controls__cases">
+                <div class="cases__list">
+                  <button class="cases__btn text-small cases__btn--active" id="defaultOpen" onclick="openCase(event, 'case1')">
+                    Case 1
+                  </button>
+                  <button class="cases__btn text-small" onclick="openCase(event, 'case2')">
+                    Case 2
+                  </button>
+                  <button class="cases__btn text-small" onclick="openCase(event, 'case3')">
+                    Case 3
+                  </button>
+                </div>
+              </div>
+              <div id="case1" class="cases__content">
+                <div class="example__group">
+                  <div class="example__data"><b>Input = </b>@Model.InputEx1</div>
+                  <div class="example__data"><b>Output = </b>@Model.OutputEx1</div>
+                </div>
+              </div>
+              <div id="case2" class="cases__content">
+                <div class="example__group">
+                  <div class="example__data"><b>Input = </b>@Model.InputEx2</div>
+                  <div class="example__data"><b>Output = </b>@Model.OutputEx2</div>
+                </div>
+              </div>
+              <div id="case3" class="cases__content">
+                <div class="example__group">
+                  <div class="example__data"><b>Input = </b>@Model.InputEx3</div>
+                  <div class="example__data"><b>Output = </b>@Model.OutputEx3</div>
+                </div>
+              </div>
+            </div>
+            <div class="controls__footer">
+              <select default-value="console" class="controls__select">
+                <option value="console">Console</option>
+              </select>
+              <div class="footer__btns">
+                
+                <button class="controls__btn" type="submit" onclick="executeCode()">Run</button>
 
-    </div>
-    
-    <div class="editor" id="editor"></div>
-    <script src="~/js/lib/ace.js"></script>
-      <script src="~/js/lib/theme-one_dark.js"></script>
-    <div class="detailed-task__controls detailed-task__card">
-      <div class="controls__tabs">
-        <button class="controls__tab text-medium controls__tab--active">
-          Testcase
-        </button>
-        <button class="controls__tab text-medium">
-          Result
-        </button>
-      </div>
-      <div class="controls__content">
-        <div class="controls__cases">
-          <div class="cases__list">
-            <button class="cases__btn text-small cases__btn--active">
-              Case 1
-            </button>
-            <button class="cases__btn text-small">
-              Case 2
-            </button>
-            <button class="cases__btn text-small">
-              Case 3
-            </button>
+                <input class="controls__btn controls__btn--green" value="Submit">
+              </div>
+            </div>
           </div>
-          <div class="cases__add">+</div>
-        </div>
-        <div class="cases__content">
-          <label>
-            nums =
-            <input class="cases__input" type="text" placeholder="...">
-          </label>
-          <label>
-            target =
-            <input class="cases__input" type="text" placeholder="...">
-          </label>
-        </div>
-      </div>
-      <div class="controls__footer">
-        <select default-value="console" class="controls__select">
-          <option value="console">Console1</option>
-          <option value="console">Console2</option>
-        </select>
-        <div class="footer__btns">
-          <button class="controls__btn" onclick="executeCode()">
-            Run
-          </button>
-          <button class="controls__btn controls__btn--green">
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
-  <script src="~/js/ide.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/lib/ace.js"></script>
+<script src="~/js/lib/theme-one_dark.js"></script>
+<script src="~/js/ide.js"></script>
 </body>
 </html>

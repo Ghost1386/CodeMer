@@ -31,4 +31,6 @@ public class UpdateProblemDto
     public string InputEx3 { get; set; }
     
     public string OutputEx3 { get; set; }
+    
+    public string DefaultCode { get; set; }
 }

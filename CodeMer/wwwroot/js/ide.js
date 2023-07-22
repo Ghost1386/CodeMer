@@ -14,7 +14,6 @@ function executeCode() {
         method: "POST",
 
         data: {
-            Language: $("#languages").val(),
             Code: editor.getSession().getValue()
         },
 

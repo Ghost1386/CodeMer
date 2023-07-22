@@ -26,6 +26,8 @@ public class ProblemDetails
     
     public string OutputEx3 { get; set; }
     
+    public string DefaultCode { get; set; }
+    
     [ForeignKey("ProblemId")]
     public int ProblemId { get; set; }
     

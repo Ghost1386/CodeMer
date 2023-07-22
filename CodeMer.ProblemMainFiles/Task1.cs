@@ -4,6 +4,6 @@ public class Task1
 {
     public int Sum(int a, int b)
     {
-        return 0;
+        return a + b;
     }
 }
