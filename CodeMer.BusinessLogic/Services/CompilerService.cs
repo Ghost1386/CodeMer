@@ -45,7 +45,6 @@ public class CompilerService : ICompilerService
             stopwatch.Stop();
             
             Thread.Sleep(5000);
-            Task.Delay(5000);
 
             CheckingTasksOnTests(requestCompilerDto.ProblemId);
 

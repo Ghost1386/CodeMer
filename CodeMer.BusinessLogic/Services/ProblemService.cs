@@ -79,7 +79,7 @@ public class ProblemService : IProblemService
 
     private static Сompleteness GetEnumOfComplete(IQueryable<ProblemFinish> problemFinish, int problemId)
     {
-        if (problemFinish.Any(p => p.ProblemFinishId == problemId))
+        if (problemFinish.Any(p => p.ProblemId == problemId))
         {
             return Сompleteness.Finished;
         }
