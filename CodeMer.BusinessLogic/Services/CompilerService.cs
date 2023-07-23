@@ -43,10 +43,9 @@ public class CompilerService : ICompilerService
             }
             
             stopwatch.Stop();
-
-            var fileWriteTime = (int)stopwatch.ElapsedMilliseconds;
             
-            Task.Delay(fileWriteTime * 1000);
+            Thread.Sleep(5000);
+            Task.Delay(5000);
 
             CheckingTasksOnTests(requestCompilerDto.ProblemId);
 
